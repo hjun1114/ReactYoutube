@@ -33,7 +33,7 @@ class SearchBar extends React.Component {
           // we are getting data from a state, not from the form.
           onChange = {(event)=> this.setState({term: event.target.value })}
         />
-        // Value of the input: {this.state.term}
+      
       </div>
       // Recap: so when we update the input element, event handler function is called then we set the state and record the new value of input.
     );

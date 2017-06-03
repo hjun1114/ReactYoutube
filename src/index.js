@@ -1,21 +1,32 @@
 import React from 'react';
 // importing react library to have an access.
 // React is core library that knows how to work with componentns and how to nest them.
-
 import ReactDOM from 'react-dom';
 // We also need ReactDOM library.
 // This library will render the component to DOM; So this library takes the component and insert the components into the DOM.
-
 import SearchBar from './components/search-bar';
+import YTSearch from 'youtube-api-search';
 
 const API_KEY = 'AIzaSyCXfrsfw7nOZXBfP9mCFdUXYFtw6rdW_Pw';
 
-const App = () => { // function () is equal to () =>
-  return (
-    <div>
-      <SearchBar/>
-    </div>
-  );  // purpose of using JSX is its simpliticy. clean, concise and very easy to understand.
+class App extends React.Component {
+  constructor (props) {
+    super(props);
+
+    this.state = { videos: [] };
+
+    YTSearch({key: API_KEY, term: '안녕'}, (searchedVideos) => {
+      this.setState({ videos: searchedVideos });
+    });
+  }
+  
+  render () {
+    return (
+      <div>
+        <SearchBar/>
+      </div>
+    );
+  }
 }
 // Creating a new component. This component should produce HTML elements.
 
