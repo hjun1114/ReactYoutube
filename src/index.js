@@ -4,8 +4,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 // We also need ReactDOM library.
 // This library will render the component to DOM; So this library takes the component and insert the components into the DOM.
-import SearchBar from './components/search-bar';
 import YTSearch from 'youtube-api-search';
+import VideoList from './components/video-list-box';
+import SearchBar from './components/search-bar';
+
 
 const API_KEY = 'AIzaSyCXfrsfw7nOZXBfP9mCFdUXYFtw6rdW_Pw';
 
@@ -17,14 +19,17 @@ class App extends React.Component {
 
     YTSearch({key: API_KEY, term: '안녕'}, (searchedVideos) => {
       this.setState({ videos: searchedVideos });
+      // search is done when the callback function is called. Then, update the state with returned data
     });
   }
-  
+
   render () {
     return (
       <div>
         <SearchBar/>
+        <VideoList videos={this.state.videos} />
       </div>
+      // passing props to children element
     );
   }
 }
