@@ -4,7 +4,13 @@ import VideoListItem from './video-list-item';
 const VideoList = (props) => {
 
   const videoItems = props.videos1.map((video)=> {
-    return <VideoListItem key={video.etag} video = {video} />
+    return (
+      <VideoListItem
+        onVideoClick = {props.onVideoClick}
+        key={video.etag}
+        video = {video}
+      />
+    );
   });
   // very similar to foreach, difference is that it spits out an array.
   // this mapped array would result in [<li>Video<li>,...]

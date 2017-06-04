@@ -7,7 +7,7 @@ import ReactDOM from 'react-dom';
 import YTSearch from 'youtube-api-search';
 import VideoList from './components/video-list-box';
 import SearchBar from './components/search-bar';
-
+import VideoDetail from './components/video-details';
 
 const API_KEY = 'AIzaSyCXfrsfw7nOZXBfP9mCFdUXYFtw6rdW_Pw';
 
@@ -15,10 +15,16 @@ class App extends React.Component {
   constructor (props) {
     super(props);
 
-    this.state = { videos: [] };
+    this.state = {
+      videos: [],
+      selectedVideo: null
+    };
 
     YTSearch({key: API_KEY, term: '안녕'}, (searchedVideos) => {
-      this.setState({ videos: searchedVideos });
+      this.setState({
+         videos: searchedVideos,
+         selectedVideo: searchedVideos[0]
+       });
       // search is done when the callback function is called. Then, update the state with returned data
     });
   }
@@ -27,7 +33,11 @@ class App extends React.Component {
     return (
       <div>
         <SearchBar/>
-        <VideoList videos1={this.state.videos} />
+        <VideoDetail video={this.state.selectedVideo} />
+        <VideoList
+          videos1={this.state.videos}
+          onVideoClick={(selectedVideo)=>{this.setState({selectedVideo: selectedVideo})}}
+        />
       </div>
       // passing props to children element
     );
