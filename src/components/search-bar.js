@@ -8,15 +8,15 @@ import React from 'react';
 
 // whenever you want a component to have some type of internal record keeping, we need to use class-based component.
 
-// because users are going to type into this input,our component really needs to have some ability to introspect itself. "Hey the user just typed something!"
+// because users are going to type into this input,the component really needs to have some ability to introspect itself. "Hey the user just typed something!"
 
 class SearchBar extends React.Component {
 
-  // Initializing the state object -> create constructor function
-  // constructor function is the first and only function called automatically whenever a new instance of the class is created.
+  // Initializing the state object -> create constructor method
+  // constructor is the first and only function called automatically whenever a new instance of the class is created.
   constructor(props) {
     super(props);
-    // React.component itself has its won constructor.
+    // React.component itself has its own constructor.
     // When we define a method that is already defined on the parent class, we can call that parent method by calling 'super'.
     this.state = { term: '' };
     // whenever the user updates the search input, this property is the on that we should update or record the change.
@@ -33,7 +33,6 @@ class SearchBar extends React.Component {
           // we are getting data from a state, not from the form.
           onChange = {(event)=> this.setState({term: event.target.value })}
         />
-      
       </div>
       // Recap: so when we update the input element, event handler function is called then we set the state and record the new value of input.
     );

@@ -27,7 +27,7 @@ class App extends React.Component {
     return (
       <div>
         <SearchBar/>
-        <VideoList videos={this.state.videos} />
+        <VideoList videos1={this.state.videos} />
       </div>
       // passing props to children element
     );

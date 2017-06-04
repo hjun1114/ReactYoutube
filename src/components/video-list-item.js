@@ -1,6 +1,26 @@
 import React from 'react';
 
 const VideoListItem = (props) => {
-  return <li>Video</li>
+  const video = props.video;
+  const imgURL = video.snippet.thumbnails.default.url;
+  const title = video.snippet.title;
+  return (
+    <li className = "list-group-item">
+      <div className = "video-list media">
+
+        <div className = "media-left">
+          <img src={imgURL} className = "media-object" />
+        </div>
+
+        <div className="media-body">
+          <div className="media-heading">
+            {title}
+          </div>
+        </div>
+
+      </div>
+    </li>
+  );
 };
+
 export default VideoListItem;
