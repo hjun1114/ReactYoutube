@@ -20,8 +20,12 @@ class App extends React.Component {
       selectedVideo: null
     };
 
-    YTSearch({key: API_KEY, term: '안녕'}, (searchedVideos) => {
-      this.setState({
+    this.videoSearch('안녕');
+  }
+
+  videoSearch(term) {
+    YTSearch({key: API_KEY, term: term}, (searchedVideos) => {
+      this.setState ({
          videos: searchedVideos,
          selectedVideo: searchedVideos[0]
        });
@@ -32,11 +36,11 @@ class App extends React.Component {
   render () {
     return (
       <div>
-        <SearchBar/>
+        <SearchBar onSearchTermChange = {(term)=> {this.videoSearch(term)}} />
         <VideoDetail video={this.state.selectedVideo} />
         <VideoList
           videos1={this.state.videos}
-          onVideoClick={(selectedVideo)=>{this.setState({selectedVideo: selectedVideo})}}
+          onVideoClick={(chosenVideo)=>{this.setState({selectedVideo: chosenVideo})}}
         />
       </div>
       // passing props to children element

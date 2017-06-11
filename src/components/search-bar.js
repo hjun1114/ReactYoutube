@@ -19,26 +19,31 @@ class SearchBar extends React.Component {
     // React.component itself has its own constructor.
     // When we define a method that is already defined on the parent class, we can call that parent method by calling 'super'.
     this.state = { term: '' };
-    // whenever the user updates the search input, this property is the on that we should update or record the change.
+    // whenever the user updates the search input, this property is the one that we should update or record the change.
   }
   // State in React is a plain JS object that is used to record and react to user events. Each class based component has its own state object.
   // whenever component state is changed, the component immediately re-renders and forces all of its children to render as well.
   // so, if SearchBar had some states and it changed, the render function would be re-rendered.
   render() {
     return (
-      <div>
+      <div className="search-bar">
         <input
           value = {this.state.term}
           // this makes a controlled component
           // we are getting data from a state, not from the form.
-          onChange = {(event)=> this.setState({term: event.target.value })}
+          onChange = {(event)=> {this.onInputChange(event.target.value)}}
+          placeholder = "search..."
         />
       </div>
       // Recap: so when we update the input element, event handler function is called then we set the state and record the new value of input.
     );
   } // every React component that are class-based needs render method.
+  onInputChange(term) {
+    this.setState({term: term});
+    this.props.onSearchTermChange(term);
+  }
 }
-
+//
 // Recap: We defined a new class called SearchBar and give it an access to all of the funcionality that React.Component has.
 // In other words, it gives our search bar a bunch of functionality from the React.Component Class.
 
